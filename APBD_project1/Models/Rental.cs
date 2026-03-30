@@ -21,16 +21,40 @@ public class Rental
         ReturnDate = DateTime.Now;
     }
 
-    public bool IsLate()
-    {
-        return ReturnDate != null && ReturnDate > DueDate;
-    }
-
     public decimal CalculatePenalty()
     {
-        if (!IsLate()) return 0;
+        if (ReturnDate == null)
+        {
+            return 0;
+        }
 
-        var daysLate = (ReturnDate.Value - DueDate).Days;
-        return daysLate * 10; // 10 zł za dzień
+        if (ReturnDate.Value <= DueDate)
+        {
+            return 0;
+        }
+
+        int daysLate = (ReturnDate.Value.Date - DueDate.Date).Days;
+        return daysLate * 10;
     }
+    
+    public override string ToString()
+    {
+        string returnInfo;
+
+        if (ReturnDate == null)
+        {
+            returnInfo = "Nieoddane";
+        }
+        else
+        {
+            returnInfo = ReturnDate.Value.ToString("g");
+        }
+
+        return $"Użytkownik: {User.FirstName} {User.LastName}, " +
+               $"Sprzęt: {Device.Name}, " +
+               $"Data wypożyczenia: {RentDate:g}, " +
+               $"Termin zwrotu: {DueDate:g}, " +
+               $"Data zwrotu: {returnInfo}";
+    }
+    
 }
