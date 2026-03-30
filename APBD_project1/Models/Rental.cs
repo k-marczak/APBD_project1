@@ -37,6 +37,11 @@ public class Rental
         return daysLate * 10;
     }
     
+    public bool IsActive
+    {
+        get { return ReturnDate == null; }
+    }
+    
     public override string ToString()
     {
         string returnInfo;
