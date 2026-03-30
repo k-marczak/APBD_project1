@@ -2,7 +2,7 @@
 
 public class Student : User
 {
-    protected Student(string firstName, string lastName) : base(firstName, lastName) {}
+    public Student(string firstName, string lastName) : base(firstName, lastName) {}
 
     public override int MaxLoans => 2;
 }

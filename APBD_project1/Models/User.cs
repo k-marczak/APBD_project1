@@ -8,7 +8,7 @@ public abstract class User
     public string FirstName { get; set; }
     public string LastName { get; set; }
 
-    protected User(string firstName, string lastName)
+    public User(string firstName, string lastName)
     {
         Id = _idCounter++;
         FirstName = firstName;

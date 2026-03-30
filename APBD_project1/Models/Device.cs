@@ -6,7 +6,7 @@ public abstract class Device
 
     public int Id { get; }
     public string Name { get; set; }
-    public bool isAvailable { get; set; } = true;
+    public bool IsAvailable { get; set; } = true;
 
     protected Device(string Name)
     {
@@ -16,7 +16,7 @@ public abstract class Device
 
     public override string ToString()
     {
-        return $"{Id}: {Name} (Available: {isAvailable})";
+        return $"{Id}: {Name} (Available: {IsAvailable})";
     }
     
 }
