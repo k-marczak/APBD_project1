@@ -10,4 +10,9 @@ public class Camera : Device
         Resolution = resolution;
         IsFullHD = isFullHd;
     }
+    
+    public override string ToString()
+    {
+        return "Camera: " + "Id: " + Id + ", Nazwa: " + Name + ", Status: " + Status;
+    }
 }

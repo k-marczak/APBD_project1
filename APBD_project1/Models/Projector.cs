@@ -10,4 +10,9 @@ public class Projector : Device
         VideoFormat = videoFormat;
         SpeakerMounted = speakerMounted;
     }
+    
+    public override string ToString()
+    {
+        return "Projektor: " + "Id: " + Id + ", Nazwa: " + Name + ", Status: " + Status;
+    }
 }
