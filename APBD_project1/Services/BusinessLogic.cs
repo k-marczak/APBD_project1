@@ -8,7 +8,7 @@ public class BusinessLogic
     private List<User> _users = new();
     private List<Rental> _rentals = new();
 
-    public void AddEquipment(Device device)
+    public void AddDevice(Device device)
     {
         _devices.Add(device);
     }
@@ -72,7 +72,7 @@ public class BusinessLogic
         Console.WriteLine("Sprzęt oznaczono jako niedostępny.");
     }
     
-    public void RentEquipment(int userId, int deviceId, int days)
+    public void RentDevice(int userId, int deviceId, int days)
     {   
         User foundUser = null;  // -> find user to rent. 
         foreach (var user in _users)
@@ -125,7 +125,9 @@ public class BusinessLogic
         Console.WriteLine("Ok. Wypożyczono sprzęt pomyślnie.");
     }
 
-    public void ReturnEquipment(int deviceId)
+    
+    
+    public void ReturnDevice(int deviceId, DateTime returnDate)
     {
         Rental activeRental = null;
         foreach (var rental in _rentals)
@@ -139,7 +141,7 @@ public class BusinessLogic
             return;
         }
 
-        activeRental.Return();
+        activeRental.Return(returnDate);
         activeRental.Device.IsAvailable = true;
 
         decimal penalty = activeRental.CalculatePenalty();
@@ -147,11 +149,10 @@ public class BusinessLogic
         Console.WriteLine("Sprzęt został zwrócony.");
 
         if (penalty > 0)
-        {
-            Console.WriteLine("Kara za spóźnienie: " + penalty + " zł");
-        }
+        { Console.WriteLine("Kara za spóźnienie: " + penalty + " zł"); }
+        else
+        { Console.WriteLine("Zwrot był w terminie."); }
     }
-    
     
     
 
@@ -159,7 +160,7 @@ public class BusinessLogic
     {
         Console.WriteLine("=== REPORT ===");
 
-        Console.WriteLine("Equipment:");
+        Console.WriteLine("All devices:");
         foreach (var e in _devices)
             Console.WriteLine(e);
 
@@ -167,4 +168,9 @@ public class BusinessLogic
         foreach (var r in _rentals.Where(r => r.ReturnDate == null))
             Console.WriteLine($"{r.User} -> {r.Device}");
     }
+    
+    
+    
+    
+    
 }

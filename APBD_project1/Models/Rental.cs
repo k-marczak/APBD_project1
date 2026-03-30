@@ -16,9 +16,9 @@ public class Rental
         DueDate = RentDate.AddDays(days);
     }
 
-    public void Return()
+    public void Return(DateTime returnDate)
     {
-        ReturnDate = DateTime.Now;
+        ReturnDate = returnDate;
     }
 
     public decimal CalculatePenalty()
